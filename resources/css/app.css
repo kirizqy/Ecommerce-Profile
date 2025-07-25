@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Hilangkan garis biru focus pada ikon sosial media */
+.sosmed-link:focus,
+.sosmed-link:focus-visible,
+.sosmed-link:active {
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+}
+
+/* Atur semua link dalam blok kontak agar warnanya mengikuti teks sekitarnya */
+.contact-link {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+.contact-link:hover {
+    text-decoration: underline !important;
+}
