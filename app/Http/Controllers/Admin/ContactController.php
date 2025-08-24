@@ -3,66 +3,41 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // LIST (server-side pagination)
+    public function index(Request $request)
     {
-        $contacts = Contact::latest()->paginate(10);
-        return view('admin.contacts.index', compact('contacts'));
+        $q = trim((string) $request->get('q', ''));
+
+        $contacts = Contact::query()
+            ->when($q, function ($qr) use ($q) {
+                $qr->where(function ($w) use ($q) {
+                    $w->where('name', 'like', "%{$q}%")
+                      ->orWhere('email', 'like', "%{$q}%")
+                      ->orWhere('message', 'like', "%{$q}%");
+                });
+            })
+            ->latest()
+            ->paginate(20)        // <- atur page size
+            ->withQueryString();  // <- biar query (q) tetep kebawa
+
+        return view('admin.contacts.index', compact('contacts', 'q'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
+    // SHOW (opsional)
     public function show(Contact $contact)
     {
-        return view('admin.contacts.show', compact('contacts'));
+        return view('admin.contacts.show', compact('contact'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    // DESTROY
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        return redirect()->route('contact.index')->with('success', 'Pesan berhasil dihapus.');
+        return redirect()->route('admin.contacts.index')->with('success', 'Pesan dihapus.');
     }
 }

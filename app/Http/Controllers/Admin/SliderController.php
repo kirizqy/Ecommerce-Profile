@@ -31,33 +31,24 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'nullable|string',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        $data = $request->validate([
+            'title'       => 'nullable|string',
+            'image'       => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
             'description' => 'nullable|string',
-            'status' => 'boolean',
-            'order' => 'nullable|integer'
+            'status'      => 'nullable|boolean',
+            'order'       => 'nullable|integer',
         ]);
 
-        $path = $request->file('image')->store('sliders', 'public');
+        // simpan gambar ke storage/app/public/sliders/...
+        $data['image']   = $request->file('image')->store('sliders', 'public');
+        $data['status']  = (bool) ($data['status'] ?? true);
+        $data['order']   = $data['order'] ?? 0;
 
-        SLider::created([
-            'title' => $request->title,
-            'image' => $path,
-            'description' => $request->description,
-            'status' => $request->status ?? true,
-            'order' => $request->order ?? 0,
-        ]);
+        Slider::create($data);
 
-        return redirect()->route('sliders.index')->with('success', 'Slider berhasil ditambahkan.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()
+            ->route('admin.sliders.index')
+            ->with('success', 'Slider berhasil ditambahkan.');
     }
 
     /**
@@ -73,24 +64,30 @@ class SliderController extends Controller
      */
     public function update(Request $request, Slider $slider)
     {
-        $request->validate([
-            'title' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        $data = $request->validate([
+            'title'       => 'nullable|string',
+            'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'description' => 'nullable|string',
-            'status' => 'boolean',
-            'order' => 'nullable|integer'
+            'status'      => 'nullable|boolean',
+            'order'       => 'nullable|integer',
         ]);
 
-        $data = $request->only(['title', 'description', 'status', 'order']);
+        $data['status'] = (bool) ($data['status'] ?? $slider->status);
+        $data['order']  = $data['order'] ?? $slider->order;
 
         if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($slider->image);
+            // hapus gambar lama jika ada
+            if ($slider->image && Storage::disk('public')->exists($slider->image)) {
+                Storage::disk('public')->delete($slider->image);
+            }
             $data['image'] = $request->file('image')->store('sliders', 'public');
         }
 
         $slider->update($data);
 
-        return redirect()->route('sliders.index')->with('success', 'Slider berhasil diperbarui.');
+        return redirect()
+            ->route('admin.sliders.index')
+            ->with('success', 'Slider berhasil diperbarui.');
     }
 
     /**
@@ -98,9 +95,13 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        Storage::disk('public')->delete($slider->image);
+        if ($slider->image && Storage::disk('public')->exists($slider->image)) {
+            Storage::disk('public')->delete($slider->image);
+        }
         $slider->delete();
 
-        return redirect()->route('sliders.index')->with('success', 'Slider berhasil dihapus.');
+        return redirect()
+            ->route('admin.sliders.index')
+            ->with('success', 'Slider berhasil dihapus.');
     }
 }

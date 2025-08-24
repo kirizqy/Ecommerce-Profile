@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    // (opsional) halaman form
     public function create()
     {
-        return view('contact');
+        return view('frontend.contact');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'message' => 'required|string',
+        // Validasi & ambil HANYA field yang akan disimpan
+        $data = $request->validate([
+            'name'    => ['required','string','max:100'],
+            'email'   => ['required','email','max:150'],
+            'message' => ['required','string','max:2000'],
         ]);
 
-        Contact::create($request->all());
+        Contact::create($data); // BUKAN $request->all()
 
-        return back()->with('success', 'Pesan kamu telah terkirim.');
+        return back()->with('success', 'Pesan kamu sudah terkirim. Terima kasih!');
     }
 }

@@ -9,18 +9,34 @@ class AdminController extends Controller
 {
     public function showLoginForm()
     {
+        // kalau mau opsi A, biarkan seperti ini:
         return view('admin.login');
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $cred = $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required|string',
+        ]);
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('/admin/dashboard');
+        if (Auth::attempt($cred, $request->boolean('remember'))) {
+            $request->session()->regenerate();
+
+            // pastikan hanya admin yang boleh masuk
+            if (! Auth::user()->is_admin) {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Akun ini tidak memiliki akses admin.',
+                ])->onlyInput('email');
+            }
+
+            return redirect()->intended(route('admin.dashboard'));
         }
 
-        return back()->withErrors(['email' => 'Email atau password salah']);
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ])->onlyInput('email');
     }
 
     public function logout(Request $request)
@@ -28,11 +44,7 @@ class AdminController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/admin/login');
-    }
 
-    public function dashboard()
-    {
-        return view('admin.dashboard');
+        return redirect()->route('admin.login');
     }
 }

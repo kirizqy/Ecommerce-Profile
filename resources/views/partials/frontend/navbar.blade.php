@@ -1,32 +1,44 @@
-<!-- resources/views/partials/navbar.blade.php -->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top shadow-sm py-2">
-  <div class="container d-flex justify-content-between align-items-center">
-    
-    <!-- Brand Placeholder (tanpa logo gambar) -->
-    <div class="d-flex align-items-center">
-      <div class="d-flex flex-column lh-sm">
-        <span class="fw-bold fs-4 text-white">BINA BORDIR</span>
-        <small class="text-white">Luxurious Embroidery - Bordir eksklusif</small>
-      </div>
-    </div>
 
-    <!-- Toggle untuk mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-      aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark site-nav sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold"
+       href="{{ Route::has('home') ? route('home') : url('/') }}">
+      BINA BORDIR
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Menu -->
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link text-white" href="{{ url('/') }}">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="{{ url('/about') }}">About Us</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="{{ url('/catalogue') }}">Catalogue</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="{{ url('/gallery') }}">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="{{ url('/contact') }}">Contact</a></li>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-lg-2">
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+             href="{{ Route::has('home') ? route('home') : url('/') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
+             href="{{ Route::has('about') ? route('about') : url('/about') }}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('catalogue.*') ? 'active' : '' }}"
+             href="{{ Route::has('catalogue.index') ? route('catalogue.index') : url('/catalogue') }}">Catalogue</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}"
+             href="{{ Route::has('gallery') ? route('gallery') : url('/gallery') }}">Gallery</a>
+        </li>
+                  <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}"
+              href="{{ Route::has('news') ? route('news') : url('/news') }}">News</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
+             href="{{ Route::has('contact') ? route('contact') : url('/contact') }}">Contact</a>
+        </li>
+        {{-- Tidak ada link Admin --}}
       </ul>
     </div>
-
   </div>
 </nav>

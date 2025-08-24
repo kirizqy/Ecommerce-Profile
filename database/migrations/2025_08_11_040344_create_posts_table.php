@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('desccription')->nullable();
+            $table->string('title');
+            $table->string('slug')->unique();
             $table->string('image')->nullable();
-            $table->string('shopee_link')->nullable();
-            $table->string('tokopedia_link')->nullable();
-            $table->string('whatsapp_link')->nullable();
+            $table->text('excerpt')->nullable();
+            $table->longText('body');
+            $table->dateTime('published_at')->index();
+            $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('posts');
     }
 };

@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('image');
+            $table->string('title')->nullable();    // Judul
+            $table->text('description')->nullable(); // <— TAMBAH
+            $table->string('image');                // Path gambar utama
+            $table->string('media')->nullable();    // Video/file lainnya
+            $table->string('type', 32)->default('image'); // <— TAMBAH (image|video|file)
             $table->timestamps();
         });
+
     }
 
     /**

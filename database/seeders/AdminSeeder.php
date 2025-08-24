@@ -2,22 +2,23 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class AdminSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@binabordir.com',
-            'password' => Hash::make('password123'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'binabordir@gmail.com'], // kunci unik
+            [
+                'name'              => 'Admin',
+                'password'          => Hash::make('password123'),
+                'is_admin'          => true,                 // <-- penting!
+                'email_verified_at' => now(),               // opsional
+                'remember_token'    => str()->random(10),   // opsional
+            ]
+        );
     }
 }

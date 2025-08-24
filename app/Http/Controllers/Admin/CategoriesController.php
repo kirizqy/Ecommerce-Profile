@@ -30,10 +30,11 @@ class CategoriesController extends Controller
         return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
-    public function edit(Category $category)
+            public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact('Categories'));
+        return view('admin.categories.edit', compact('category'));
     }
+
 
     public function update(Request $request, Category $category)
     {
