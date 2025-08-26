@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Agu 2025 pada 09.52
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Aug 26, 2025 at 05:08 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bina_bordir`
+-- Database: `store_bina`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -34,17 +34,10 @@ CREATE TABLE `categories` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Kebaya', '2025-08-23 06:55:00', '2025-08-23 06:55:00');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contacts`
+-- Table structure for table `contacts`
 --
 
 CREATE TABLE `contacts` (
@@ -56,17 +49,10 @@ CREATE TABLE `contacts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `contacts`
---
-
-INSERT INTO `contacts` (`id`, `name`, `email`, `message`, `created_at`, `updated_at`) VALUES
-(1, 'Reyhan', 'reyhanadip12@gmail.com', 'test', '2025-08-23 07:27:53', '2025-08-23 07:27:53');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `galleries`
+-- Table structure for table `galleries`
 --
 
 CREATE TABLE `galleries` (
@@ -80,17 +66,10 @@ CREATE TABLE `galleries` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `galleries`
---
-
-INSERT INTO `galleries` (`id`, `title`, `description`, `image`, `media`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'contoh gambar', 'ini gambar', 'gallery/media/hJm3Fa0u0uG3XISimS0dGFVrTbGLufpP6dcfE53M.jpg', 'gallery/media/hJm3Fa0u0uG3XISimS0dGFVrTbGLufpP6dcfE53M.jpg', 'image', '2025-08-23 07:25:09', '2025-08-23 07:25:09');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -100,7 +79,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -124,7 +103,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `news`
+-- Table structure for table `news`
 --
 
 CREATE TABLE `news` (
@@ -139,17 +118,10 @@ CREATE TABLE `news` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `news`
---
-
-INSERT INTO `news` (`id`, `title`, `slug`, `content`, `image`, `status`, `published_at`, `created_at`, `updated_at`) VALUES
-(1, 'pameran', 'malaysia', 'pameran pada tahun ini', 'news/PaESXugrY4PnKCvI8rkqV5wujY5SwjhPCzLtDhw7.jpg', 'published', '2025-08-23 07:28:00', '2025-08-23 07:30:59', '2025-08-23 07:30:59');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
@@ -168,7 +140,7 @@ CREATE TABLE `posts` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -187,17 +159,10 @@ CREATE TABLE `products` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `products`
---
-
-INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `image`, `images`, `shopee_link`, `tokopedia_link`, `whatsapp_link`, `stock`, `price`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Kebaya Rose Lace', 'Size : S - M - L - XL - XXL\r\nColor combos : blue, pink, red, green\r\nMaterials : 50% cotton 50% polyester', 'products/20250823_140401-whatsapp-image-2025-08-18-at-033457-e509fe7b.jpg', '[]', 'https://id.shp.ee/GZiXxhE', 'https://tokopedia.link/1GaPmfbP3Vb', 'https://wa.me/+6282117927000', 1, 1800000, '2025-08-23 07:04:01', '2025-08-23 07:04:02');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sessions`
+-- Table structure for table `sessions`
 --
 
 CREATE TABLE `sessions` (
@@ -212,7 +177,7 @@ CREATE TABLE `sessions` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sliders`
+-- Table structure for table `sliders`
 --
 
 CREATE TABLE `sliders` (
@@ -226,17 +191,10 @@ CREATE TABLE `sliders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `sliders`
---
-
-INSERT INTO `sliders` (`id`, `title`, `image`, `description`, `status`, `order`, `created_at`, `updated_at`) VALUES
-(1, 'slider 1', 'sliders/24mvreC4Eflod8m7qvIkGJq6P9Daf53FBrQf7PdR.jpg', 'baju', 1, 1, '2025-08-23 07:26:36', '2025-08-23 07:26:36');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `timelines`
+-- Table structure for table `timelines`
 --
 
 CREATE TABLE `timelines` (
@@ -256,7 +214,7 @@ CREATE TABLE `timelines` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -272,52 +230,49 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `is_admin`, `created_at`, `updated_at`, `remember_token`) VALUES
-(1, 'Admin', 'binabordir@gmail.com', '2025-08-23 06:39:07', '$2y$12$c6BXGJ.hlwiK6.3QaIUspukjNfloKd9vQ/ZUm59g8so1RwHx6jDqq', 1, '2025-08-23 06:39:07', '2025-08-23 06:39:07', 'HSm8vk6Gh9'),
-(2, 'Owner', 'ownerbinabordir@gmail.com', NULL, '$2y$12$iGnc844/BcfgTk6NrnXfrea1lh1lwOv5dgri2TZemjf05sbubYPg6', 1, '2025-08-23 06:39:07', '2025-08-23 06:39:07', NULL),
-(3, 'Supervisor', 'supervisorbinabordir@gmail.com', NULL, '$2y$12$h/tv7PkZurh8J0wbqWgu3./F7FQ68oVqc.5meWvB3bCIWfHNstEz6', 1, '2025-08-23 06:39:07', '2025-08-23 06:39:07', NULL),
-(4, 'Staff 1', 'staff1binabordir@gmail.com', NULL, '$2y$12$JYTu7v2dK34.oiQ.8nrZZ.2n.x.YD/Z1pptG1LlYEBurjtJhEkp0a', 1, '2025-08-23 06:39:07', '2025-08-23 06:39:07', NULL);
+(1, 'Admin', 'binabordir@gmail.com', '2025-08-23 06:39:07', '$2y$12$c6BXGJ.hlwiK6.3QaIUspukjNfloKd9vQ/ZUm59g8so1RwHx6jDqq', 1, '2025-08-23 06:39:07', '2025-08-23 06:39:07', 'HSm8vk6Gh9');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `contacts`
+-- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `galleries`
+-- Indexes for table `galleries`
 --
 ALTER TABLE `galleries`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `news`
+-- Indexes for table `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `news_slug_unique` (`slug`);
 
 --
--- Indeks untuk tabel `posts`
+-- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
@@ -325,7 +280,7 @@ ALTER TABLE `posts`
   ADD KEY `posts_published_at_index` (`published_at`);
 
 --
--- Indeks untuk tabel `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
@@ -333,7 +288,7 @@ ALTER TABLE `products`
   ADD KEY `fk_products_category` (`category_id`);
 
 --
--- Indeks untuk tabel `sessions`
+-- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
@@ -341,94 +296,94 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indeks untuk tabel `sliders`
+-- Indexes for table `sliders`
 --
 ALTER TABLE `sliders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `timelines`
+-- Indexes for table `timelines`
 --
 ALTER TABLE `timelines`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `contacts`
+-- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `galleries`
+-- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT untuk tabel `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `posts`
+-- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `sliders`
+-- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `timelines`
+-- AUTO_INCREMENT for table `timelines`
 --
 ALTER TABLE `timelines`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `products`
+-- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
